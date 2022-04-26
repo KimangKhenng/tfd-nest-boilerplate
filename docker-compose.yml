@@ -24,7 +24,7 @@ services:
       - NEST_PORT=3000
       - NGINX_MAX_BODY=100M
     ports:
-      - 80:80
+      - "80:80"
   db:
     image: postgres:12
     container_name: tfd-nest-db
@@ -33,13 +33,13 @@ services:
       POSTGRES_USER: nest
       POSTGRES_PASSWORD: nest
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - postgresdata:/var/lib/postgresql
   redis:
     image: redis:5
     container_name: tfd-redis
     ports:
-      - 6379:6379
+      - "6379:6379"
 volumes:
   postgresdata:
