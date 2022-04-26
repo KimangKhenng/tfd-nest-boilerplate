@@ -1,4 +1,4 @@
-FROM node:15.14.0
+FROM node:16.14.0-alpine
 
 WORKDIR /app
 ENV NODE_ENV development

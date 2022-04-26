@@ -70,10 +70,13 @@ export class UsersService {
   }
 
   async create(payload: RegisterPayload) {
-    const user = await this.getByUsername(payload.username);
+    const user = await this.userRepository.findOne({
+      email: payload.email,
+      username: payload.username,
+    });
     if (user) {
       throw new NotAcceptableException(
-        'Admin with provided username already created.',
+        'Admin with provided username or email is already created.',
       );
     }
     return await this.userRepository.save(this.userRepository.create(payload));

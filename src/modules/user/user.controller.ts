@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  ParseIntPipe,
+  ParseIntPipe, Post,
   Put,
   Query,
 } from '@nestjs/common';
@@ -17,6 +17,7 @@ import { UpdatePayload } from './payloads/update.payload';
 import { Public } from '../common/decorator/public.decorator';
 import { Roles } from '../common/decorator/roles.decorator';
 import { AppRoles } from '../common/enum/roles.enum';
+import { RegisterPayload } from '../auth/payloads/register.payload';
 
 @Controller('api/v1/user')
 @ApiTags('User')
@@ -78,6 +79,19 @@ export class UserController {
     @Body() updatePayload: UpdatePayload,
   ): Promise<any> {
     return await this.userService.update(id, updatePayload);
+  }
+
+  /**
+   * Register user
+   * @param payload register payload
+   */
+  @Public()
+  @Post('register')
+  @ApiResponse({ status: 201, description: 'Successful Registration' })
+  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async register(@Body() payload: RegisterPayload): Promise<any> {
+    return await this.userService.create(payload);
   }
 
   /**

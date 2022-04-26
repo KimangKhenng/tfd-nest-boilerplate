@@ -49,18 +49,18 @@ export class AuthController {
     return user.toJSON();
   }
 
-  /**
-   * Register user
-   * @param payload register payload
-   */
-  @ApiBearerAuth()
-  @Post('register')
-  @ApiResponse({ status: 201, description: 'Successful Registration' })
-  @ApiResponse({ status: 400, description: 'Bad Request' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
-  async register(@Body() payload: RegisterPayload): Promise<any> {
-    return await this.userService.create(payload);
-  }
+  // /**
+  //  * Register user
+  //  * @param payload register payload
+  //  */
+  // @ApiBearerAuth()
+  // @Post('register')
+  // @ApiResponse({ status: 201, description: 'Successful Registration' })
+  // @ApiResponse({ status: 400, description: 'Bad Request' })
+  // @ApiResponse({ status: 401, description: 'Unauthorized' })
+  // async register(@Body() payload: RegisterPayload): Promise<any> {
+  //   return await this.userService.create(payload);
+  // }
 
   /**
    * Get request's user info
